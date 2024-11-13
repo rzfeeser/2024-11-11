@@ -1,0 +1,4 @@
+collections:
+# install from ansible galaxy
+- name: rzfeeser.mtg
+  source: https://galaxy.ansible.com
