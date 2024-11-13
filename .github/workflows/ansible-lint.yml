@@ -15,4 +15,4 @@ jobs:
           args: ""
           setup_python: "true"
           working_directory: "playbooks/"
-          requirements_file: ""
+          requirements_file: "requirements.yml"
