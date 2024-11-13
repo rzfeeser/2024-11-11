@@ -1,0 +1,59 @@
+---
+- name: showing off python in a playbook
+  hosts: localhost
+  connection: ansible.builtin.local
+  gather_facts: false
+
+  vars:
+    my_string: "this is my string"
+    host_ip: 172.15.66.199/24   # this means that 24 bits are for the NETWORK
+                                # 8 bits are for the HOST
+    webster:
+      tetris: 1989
+      super_mario_2: 1991
+
+    games:
+      - tetris
+      - super mario
+      - duck hunt
+      - dr mario
+      - metroid
+
+    #python_no: None # do not use this
+    json_no: null
+
+  tasks:
+    - name: debug a value
+      ansible.builtin.debug:
+        msg: "playing around with python3 {{ my_string.split(' ') }}"
+
+    - name: debug IP address
+      ansible.builtin.debug:
+        msg: "host octect {{ host_ip.split('.')[-1].split('/')[0] }}"
+
+    - name: show webster with .get()
+      ansible.builtin.debug:
+        var: webster.get("dr_mario", "that was not found in the game index!")
+
+    - name: python list manipulation
+      ansible.builtin.debug:
+        var: games[0] + " " + games[-5]  # tetristetris
+
+    - name: slice a python list
+      ansible.builtin.debug:
+        var: games[1:3]  # 3 is NON inclusive
+
+    - name: look at list
+      ansible.builtin.debug:
+        var: games
+
+    - name: run debug without any vars or msg
+      ansible.builtin.debug:
+
+    - name: display None (a python lack of value)
+      ansible.builtin.debug:
+        var: "{{ None }}"
+
+    - name: display null (JSON and more native to ansible)
+      ansible.builtin.debug:
+        var: json_no

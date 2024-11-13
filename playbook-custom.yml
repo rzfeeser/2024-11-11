@@ -1,0 +1,22 @@
+- name: My custom module
+  hosts: localhost
+  gather_facts: false
+  connection: ansible.builtin.local
+
+  vars:
+    card_info: "{{ lookup('rzfeeser.mtg.card', 'Archangel%20Avacyn') }}"
+
+  tasks:
+
+    - name: Display card_info obtained by using the lookup plugin
+      ansible.builtin.debug:
+        var: card_info
+
+    - name: Populate the var results with json obtained by using the mtg_card module
+      rzfeeser.mtg.mtg_card:
+        name: Archangel%20Avacyn
+      register: results
+
+    - name: Display results
+      ansible.builtin.debug:
+        var: results.mtg_json.cards[0].cmc

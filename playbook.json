@@ -1,0 +1,32 @@
+[
+  {
+    "name": "showing off python in a playbook",
+    "hosts": "localhost",
+    "connection": "ansible.builtin.local",
+    "gather_facts": false,
+    "vars": {
+      "my_string": "this is my string",
+      "host_ip": "172.15.66.199/24",
+      "webster": {
+        "tetris": 1989,
+        "super_mario_2": 1991
+      },
+      "games": [
+        "tetris",
+        "super mario",
+        "duck hunt",
+        "dr mario",
+        "metroid"
+      ],
+      "json_no": null
+    },
+    "tasks": [
+      {
+        "name": "debug a value",
+        "ansible.builtin.debug": {
+          "msg": "playing around with python3 {{ my_string.split(' ') }}"
+        }
+      }
+    ]
+  }
+]
