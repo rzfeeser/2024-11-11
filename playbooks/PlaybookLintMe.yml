@@ -1,4 +1,4 @@
-- name: My custom module    
+- name: My custom module
   hosts: localhost
   gather_facts: false
   connection: ansible.builtin.local
